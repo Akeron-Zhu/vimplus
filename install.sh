@@ -34,15 +34,15 @@ function is_ubuntu1604()
 # 在ubuntu上源代码安装vim
 function compile_vim_on_ubuntu()
 {
-    sudo apt-get remove -y vim vim-runtime gvim
-    sudo apt-get remove -y vim-tiny vim-common vim-gui-common vim-nox
-    sudo rm -rf /usr/bin/vim*
-    sudo rm -rf /usr/local/bin/vim*
-    sudo rm -rf /usr/share/vim/vim*
-    sudo rm -rf /usr/local/share/vim/vim*
+    apt-get remove -y vim vim-runtime gvim
+    apt-get remove -y vim-tiny vim-common vim-gui-common vim-nox
+    rm -rf /usr/bin/vim*
+    rm -rf /usr/local/bin/vim*
+    rm -rf /usr/share/vim/vim*
+    rm -rf /usr/local/share/vim/vim*
     rm -rf ~/vim
 
-    sudo apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
+    apt-get install -y libncurses5-dev libgnome2-dev libgnomeui-dev \
         libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
         libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev python3-dev ruby-dev lua5.1 lua5.1-dev
 
@@ -59,21 +59,21 @@ function compile_vim_on_ubuntu()
         --enable-cscope \
         --prefix=/usr
     make
-    sudo make install
+    make install
     cd -
 }
 
 # 在centos上源代码安装vim
 function compile_vim_on_centos()
 {
-    sudo rm -rf /usr/bin/vi
-    sudo rm -rf /usr/bin/vim*
-    sudo rm -rf /usr/local/bin/vim*
-    sudo rm -rf /usr/share/vim/vim*
-    sudo rm -rf /usr/local/share/vim/vim*
+    rm -rf /usr/bin/vi
+    rm -rf /usr/bin/vim*
+    rm -rf /usr/local/bin/vim*
+    rm -rf /usr/share/vim/vim*
+    rm -rf /usr/local/share/vim/vim*
     rm -rf ~/vim
 
-    sudo yum install -y ruby ruby-devel lua lua-devel luajit \
+    yum install -y ruby ruby-devel lua lua-devel luajit \
         luajit-devel ctags git python python-devel \
         python34 python34-devel tcl-devel \
         perl perl-devel perl-ExtUtils-ParseXS \
@@ -94,7 +94,7 @@ function compile_vim_on_centos()
         --enable-cscope \
         --prefix=/usr
     make
-    sudo make install
+    make install
     cd -
 }
 
@@ -107,14 +107,14 @@ function install_prepare_software_on_mac()
 # 安装centos发行版必要软件
 function install_prepare_software_on_centos()
 {
-    sudo yum install -y ctags automake gcc gcc-c++ kernel-devel cmake python-devel python3-devel curl fontconfig ack
+    yum install -y ctags automake gcc gcc-c++ kernel-devel cmake python-devel python3-devel curl fontconfig ack
     compile_vim_on_centos
 }
 
 # 安装ubuntu发行版必要软件
 function install_prepare_software_on_ubuntu()
 {
-    sudo apt-get install -y ctags build-essential cmake python-dev python3-dev fontconfig curl libfile-next-perl ack-grep
+    apt-get install -y ctags build-essential cmake python-dev python3-dev fontconfig curl libfile-next-perl ack-grep
     ubuntu_1604=`is_ubuntu1604`
     echo ${ubuntu_1604}
 
@@ -123,14 +123,14 @@ function install_prepare_software_on_ubuntu()
         compile_vim_on_ubuntu
     else
         echo "not ubuntu 16.04 LTS"
-        sudo apt-get install -y vim
+        apt-get install -y vim
     fi
 }
 
 # 安装archlinux发行版必要软件
 function install_prepare_software_on_archlinux()
 {
-    sudo pacman -S --noconfirm vim ctags automake gcc cmake python3 python2 curl ack
+    pacman -S --noconfirm vim ctags automake gcc cmake python3 python2 curl ack
 }
 
 # 拷贝文件
